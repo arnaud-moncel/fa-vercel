@@ -1,0 +1,14 @@
+*.sqlite
+.DS_Store
+dist
+**/node_modules
+
+# IDE
+.idea
+
+# Configuration
+**/.env
+
+# yarn
+yarn-error.log
+.vscode/settings.json

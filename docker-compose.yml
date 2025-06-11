@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: .
+    container_name: vercel
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=${DOCKER_DATABASE_URL}
+    extra_hosts:
+      - api.development.forestadmin.com:host-gateway
+    ports:
+      - "${APPLICATION_PORT}:${APPLICATION_PORT}"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/dist
+      - /usr/src/app/node_modules
