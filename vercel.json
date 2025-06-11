@@ -1,0 +1,44 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "customizations/*.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": ".forestadmin-schema.json",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "typings.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "devCommand": "yarn start",
+  "framework": null,
+  "installCommand": "yarn install",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "headers": {
+          "Access-Control-Allow-Origin": "https://app.forestadmin.com",
+          "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Authorization, Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version",
+          "Access-Control-Allow-Credentials": "true"
+      }
+    }
+  ]
+}
