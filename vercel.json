@@ -14,6 +14,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "my-database-introspection.json",
+      "use": "@vercel/static"
+    },
+    {
       "src": "typings.ts",
       "use": "@vercel/node"
     }
