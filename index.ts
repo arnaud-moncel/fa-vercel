@@ -5,6 +5,7 @@ import 'dotenv/config';
 import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource, introspect } from '@forestadmin/datasource-sql';
 import fs from 'fs';
+import pg from 'pg';
 
 (async () => {
   // Options to connect to the db (see above).
@@ -48,7 +49,10 @@ import fs from 'fs';
   // Connect your datasources
   // All options are documented at https://docs.forestadmin.com/developer-guide-agents-nodejs/data-sources/connection
   agent.addDataSource(
-    createSqlDataSource(connectionOptions, { introspection }),
+    createSqlDataSource({ ...connectionOptions,
+      dialect: 'postgres',
+      dialectModule: pg,
+    }, { introspection }),
   );
   
   // Expose an HTTP endpoint.
