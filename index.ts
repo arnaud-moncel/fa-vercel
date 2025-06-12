@@ -68,6 +68,7 @@ export default (async () => {
     app.listen(Number(process.env.APPLICATION_PORT), () => {
       console.log('server running');
     });
+    return app;
   } catch (error) {
     console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n');
     console.error('');
