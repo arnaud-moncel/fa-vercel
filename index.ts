@@ -7,7 +7,7 @@ import { createSqlDataSource, introspect } from '@forestadmin/datasource-sql';
 import fs from 'fs';
 import pg from 'pg';
 
-(async () => {
+export default (async () => {
   // Options to connect to the db (see above).
   const connectionOptions = {
     uri: process.env.DATABASE_URL,
