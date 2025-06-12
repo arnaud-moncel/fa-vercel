@@ -14,7 +14,7 @@ export default (async () => {
     schema: process.env.DATABASE_SCHEMA,
     sslMode: process.env.DATABASE_SSL_MODE as SslMode,
   };
-  const introspectionFilePath = './my-database-introspection.json';
+  const introspectionFilePath = `${__dirname}/my-database-introspection.json`;
   
   let introspection;
   try {
@@ -41,6 +41,7 @@ export default (async () => {
   
     // Make sure to set NODE_ENV to 'production' when you deploy your project
     isProduction: process.env.NODE_ENV === 'production',
+    schemaPath: `${__dirname}/.forestadmin-schema.json`,
   
     // Autocompletion of collection names and fields
     typingsPath: './typings.ts',
