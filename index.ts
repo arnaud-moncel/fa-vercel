@@ -8,6 +8,8 @@ import fs from 'fs';
 import pg from 'pg';
 import express from 'express';
 
+const app = express();
+
 export default (async () => {
   // Options to connect to the db (see above).
   const connectionOptions = {
@@ -58,13 +60,14 @@ export default (async () => {
   );
   
   // Expose an HTTP endpoint.
-  const app = express();
   agent.mountOnExpress(app);
   
   // Start the agent.
   try {
     await agent.start();
-    await app.listen(Number(process.env.APPLICATION_PORT));
+    app.listen(Number(process.env.APPLICATION_PORT), () => {
+      console.log('server running');
+    });
   } catch (error) {
     console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n');
     console.error('');
