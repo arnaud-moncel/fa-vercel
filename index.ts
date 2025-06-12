@@ -20,7 +20,6 @@ export default (async () => {
   try {
     // The introspection is JSON serializable. You can store it in a file.
     // Read it from the file if it exists.
-    console.log(fs.readFileSync(introspectionFilePath, 'utf-8'));
     introspection = JSON.parse(fs.readFileSync(introspectionFilePath, 'utf-8'));
   } catch (e) {
     if (e.code === 'ENOENT') {
