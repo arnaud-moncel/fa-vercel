@@ -48,6 +48,7 @@ export default (async () => {
     // Autocompletion of collection names and fields
     typingsPath: './typings.ts',
     typingsMaxDepth: 5,
+    instantCacheRefresh: false,
   });
   
   // Connect your datasources
