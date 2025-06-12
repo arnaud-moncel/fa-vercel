@@ -6,6 +6,7 @@ import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource, introspect } from '@forestadmin/datasource-sql';
 import fs from 'fs';
 import pg from 'pg';
+import express from 'express';
 
 export default (async () => {
   // Options to connect to the db (see above).
@@ -57,13 +58,17 @@ export default (async () => {
   );
   
   // Expose an HTTP endpoint.
-  agent.mountOnStandaloneServer(Number(process.env.APPLICATION_PORT));
+  const app = express();
+  agent.mountOnExpress(app);
   
   // Start the agent.
-  agent.start().catch(error => {
+  try {
+    await agent.start();
+    await app.listen(Number(process.env.APPLICATION_PORT));
+  } catch (error) {
     console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n');
     console.error('');
     console.error(error.stack);
     process.exit(1);
-  });
+  }
 })();
